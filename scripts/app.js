@@ -2,7 +2,7 @@ function init() {
   // const start = document.querySelector(".start")
   const grid = document.querySelector(".grid");
   // const currentScore = document.querySelector("#current-score-display");
-  let invaderPositionIndex = [
+  const invaderPositionIndex = [
     64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 84, 85, 86, 87, 88, 89, 90,
     91, 92, 93, 94, 95, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,
     115, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 144, 145,
@@ -25,9 +25,9 @@ function init() {
   }
 
   function addInvader() {
-    for (let i = 0; i < gridCellCount; i++) {
-      cells[invaderPositionIndex[i]].classList.add("addInvader");
-    }
+    invaderPositionIndex.forEach((invader) => {
+      cells[invader].classList.add("addInvader");
+    });
   }
 
   function addLaserBase(laserBasePosition) {
@@ -39,14 +39,35 @@ function init() {
   }
 
   function moveRight() {
-    
+    removeLaserBase(laserBasePosition);
+    laserBasePosition++;
+    addLaserBase(laserBasePosition);
   }
 
+  function moveLeft() {
+    removeLaserBase(laserBasePosition);
+    laserBasePosition--;
+    addLaserBase(laserBasePosition);
+  }
+
+  function moveLaserBase(e) {
+    console.log(e.key);
+    const x = laserBasePosition % width;
+    const y = Math.floor(laserBasePosition / width);
+    // console.log({ x, y });
+    if (e.key === "ArrowRight" && x < width - 1) {
+      moveRight();
+    } else if (e.key === "ArrowLeft" && x > 0) {
+      moveLeft();
+    } 
+  }
+
+  window.addEventListener("keydown", moveLaserBase);
 
 
   createGrid();
   addInvader();
-  LaserBase();
+  // LaserBase();
 }
 
 document.addEventListener("DOMContentLoaded", init);

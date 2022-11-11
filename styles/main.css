@@ -5,6 +5,9 @@
 body {
   height: 100vh;
   margin: 0;
+  /* background-image: url("../images/background1.png");
+  background-repeat: no-repeat;
+  background-size: contain; */
 }
 
 .scores-wrapper {
@@ -24,7 +27,7 @@ body {
 .grid {
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-  background-color: ;
+  background-color: black;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -34,7 +37,7 @@ body {
 }
 
 .grid div {
-  border: 1px solid lightgrey;
+  border: 1px solid rgb(27, 27, 27);
   flex-grow: 1;
   height: 30px;
   width: 30px;
