@@ -61,3 +61,16 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.addShield {
+  background-color: red;
+  /* background-image: url("../images/shield.png"); */
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.addBullet {
+  background-image: url("../images/Bullet.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
