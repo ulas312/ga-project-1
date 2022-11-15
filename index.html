@@ -5,21 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/main.css" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>Space Invaders</title>
     <script src="scripts/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <button id="start">Start!</button>
-    <div class="scores-wrapper">
-      <P>SCORE <span id="current-score-display">0</span></P>
-      <p>HI-SCORE</p>
-    </div>
-    <div class="grid-wrapper">
-      <div class="grid"></div>
-    </div>
-    <div class="lives-wrapper">
-      <p>LIVES LEFT</p>
-      <p>CREDIT 00</p>
+    <div class="background">
+      <div class="padding"></div>
+      <button id="start">Start!</button>
+      <div class="scores-wrapper">
+        <div class="score">
+          <p>SCORE <1></p>
+          <p><span id="current-score-display">00000</span></p>
+        </div>
+        <div class="high-score">
+          <p>HI-SCORE</p>
+          <p><span id="high-score-display">00000</span></p>
+        </div>
+      </div>
+      <div class="grid-wrapper">
+        <div class="grid"></div>
+      </div>
+      <div class="lives-line"></div>
+      <div class="lives-wrapper">
+        <p>LIVES LEFT</p>
+        <p><span class="Credit-text">CREDIT</span> 00</p>
+      </div>
     </div>
   </body>
 </html>

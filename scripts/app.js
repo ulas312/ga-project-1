@@ -3,28 +3,30 @@ function init() {
   const grid = document.querySelector(".grid");
   // const currentScore = document.querySelector("#current-score-display");
   let invaderPositionIndex = [
-    64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 84, 85, 86, 87, 88, 89, 90,
-    91, 92, 93, 94, 95, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,
-    115, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 144, 145,
-    146, 147, 148, 149, 150, 151, 152, 153, 154, 155,
+    44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 64, 65, 66, 67, 68, 69, 70,
+    71, 72, 73, 74, 75, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94,
+    95, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 124, 125,
+    126, 127, 128, 129, 130, 131, 132, 133, 134, 135,
   ];
   let direction = 1;
   let gamePlaying = false;
   let laserBasePosition = 370;
   let goingRight = true;
   const shieldPositionIndex = [
-    322, 323, 324, 325, 328, 329, 330, 331, 334, 335, 336, 337,
+    322, 303, 304, 325, 328, 309, 310, 331, 334, 315, 316, 337,
   ];
-
+  let intervalId = 0;
   const width = 20;
   const gridCellCount = width * width;
   const cells = [];
+  
 
   // <====== Grid Functions =======>
   function createGrid() {
     for (let i = 0; i < gridCellCount; i++) {
       const cell = document.createElement("div");
-      // cell.textContent = i;
+      if (i < width) cell.classList.add("ceiling");
+      if (i > width ** 2 - width - 1) cell.classList.add("floor");
       cell.setAttribute("data-index", i);
       cells.push(cell);
       grid.appendChild(cell);
@@ -53,32 +55,32 @@ function init() {
     });
   }
 
-  function moveInvader() {
-    const leftSide = invaderPositionIndex[0] % width === 0;
-    const rightSide =
+  function checkIfHasHitWall() {
+    const hasHitWall =
+      invaderPositionIndex[0] % width === 0 ||
       invaderPositionIndex[invaderPositionIndex.length - 1] % width ===
-      width - 1;
-    removeInvader();
-    if (goingRight && rightSide) {
-      for (let i = 0; i < invaderPositionIndex.length; i++) {
-        console.log("going right");
-        invaderPositionIndex[i] += width + 1;
-        direction = -1;
-        goingRight = false;
-      }
+        width - 1;
+    if (hasHitWall) {
+      removeInvader();
+      invaderPositionIndex = invaderPositionIndex.map((i) => i + width);
+      addInvader();
+      goingRight = !goingRight;
     }
-    if (leftSide && !goingRight) {
-      for (let i = 0; i < invaderPositionIndex.length; i++) {
-        console.log("going left");
-        invaderPositionIndex[i] += width - 1;
-        direction = 1;
-        goingRight = true;
-      }
-      for (let i = 0; i < invaderPositionIndex.length; i++) {
-        invaderPositionIndex[i] += direction;
-      }
+  }
+
+  function moveInvader() {
+    checkIfHasHitWall();
+    if (goingRight) {
+      removeInvader();
+      invaderPositionIndex = invaderPositionIndex.map((i) => i + 1);
+      addInvader();
     }
-    addInvader();
+    if (!goingRight) {
+      removeInvader();
+      invaderPositionIndex = invaderPositionIndex.map((i) => i - 1);
+      addInvader();
+    }
+  
   }
   // <====== Invader Functions =======>
 
@@ -135,11 +137,11 @@ function init() {
   //   setInterval(moveInvader, 100);
   // }
 
-  start.addEventListener("click", startGame);
   window.addEventListener("keydown", moveLaserBase);
+  // start.addEventListener("click", startGame);
+  startGame();
 
   createGrid();
-  addInvader();
   addShield();
 }
 
