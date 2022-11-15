@@ -23,6 +23,20 @@ body {
   margin-bottom: 30vh;
 }
 
+.instructions-wrapper {
+  display: flex;
+}
+
+.instructions-box {
+  border: 1px solid pink;
+  width: 300px;
+  color: ;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
 .scores-wrapper {
   height: 10vh;
   display: flex;
@@ -68,7 +82,7 @@ body {
   height: 10vh;
   margin: 0 170px 0 170px;
   font-size: 30px;
-  color: #41C2D2;
+  color: #41c2d2;
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
@@ -78,7 +92,7 @@ body {
   height: 10vh;
   margin: 25px 150px 10px 150px;
   font-size: 30px;
-  color: #41C2D2;
+  color: #41c2d2;
   text-align: center;
   display: flex;
   justify-content: space-evenly;
@@ -89,12 +103,25 @@ body {
   color: white;
 }
 
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: #eee;
+}
+
 .Credit-text {
-  color: #E5539E;
+  color: #e5539e;
 }
 
 .high-score {
-  color: #2C50A3;
+  color: #2c50a3;
   text-align: center;
 }
 
@@ -109,7 +136,7 @@ body {
   background-image: url("../images/space-base.png");
   background-repeat: no-repeat;
   background-size: contain;
-    background-position: center;
+  background-position: center;
 }
 
 .addShield {
@@ -117,11 +144,18 @@ body {
   background-image: url("../images/shield.png");
   background-repeat: no-repeat;
   background-size: contain;
-    background-position: center;
+  background-position: center;
 }
 
 .addBullet {
   background-image: url("../images/Bullet.png");
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+#lives-left {
+  background-image: url("../images/invader.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }

@@ -15,9 +15,18 @@
     <script src="scripts/app.js" charset="utf-8"></script>
   </head>
   <body>
+    <div class="instructions-wrapper">
+        <div class="instructions-box">
+          <h1>SPACE INVADERS</h1>
+          <button id="start" class="btn">CLICK HERE TO PLAY!</button>
+          <p>*SCORE ADVANCE TABLE*</p>
+          <P><img src="/images/5th-line-invader.png" alt="Space Invader" width="20"> = 30 POINTS</P>
+          <P><img src="/images/4th-line-invader.png" alt="Space Invader" width="20"> <img src="/images/3rd-line-invader.png" alt="Space Invader" width="20"> = 20 POINTS</P>
+          <P><img src="/images/2nd-line-invader.png" alt="Space Invader" width="20"> <img src="/images/1st-line-invader.png" alt="Space Invader" width="20"> = 20 POINTS</P>
+        </div>
+      </div>
     <div class="background">
       <div class="padding"></div>
-      <button id="start">Start!</button>
       <div class="scores-wrapper">
         <div class="score">
           <p>SCORE <1></p>
@@ -33,9 +42,10 @@
       </div>
       <div class="lives-line"></div>
       <div class="lives-wrapper">
-        <p>LIVES LEFT</p>
+        <p>LIVES LEFT <span id="lives-left"> </span></p>
         <p><span class="Credit-text">CREDIT</span> 00</p>
       </div>
     </div>
+      
   </body>
 </html>
