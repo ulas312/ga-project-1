@@ -1,8 +1,11 @@
 function init() {
+  // <====== Dom Elements =======>
   const start = document.querySelector("#start");
   const grid = document.querySelector(".grid");
   const livesLeftDisplay = document.querySelector("#lives-left");
   // const currentScore = document.querySelector("#current-score-display");
+
+  // <====== Game Variables =======>
   let invaderPositionIndex = [
     44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 64, 65, 66, 67, 68, 69, 70,
     71, 72, 73, 74, 75, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 104,
@@ -23,7 +26,7 @@ function init() {
   let lives = 0;
 
   let invaderBombInterval = null;
-  let baseBulletMoving;
+  let baseLaserShoot = null;
   let timer = null;
 
   // <====== Grid Functions =======>
@@ -149,7 +152,41 @@ function init() {
     }
   }
 
-
+  
+  function baseLaser(e) {
+    if (e.key === 32) {
+      let laserPosition = laserBasePosition - 20;
+      const playerLaserMoving = window.setInterval(() => {
+        const y = Math.floor(laserPosition / width);
+        if (y === 0) {
+          cells[laserPosition].classList.remove("bullet");
+        } else if (cells[laserPosition].classList.contains("addInvader")) {
+          cells[laserPosition].classList.remove("addInvader", "bullet");
+          // invaderIndex = invaderPositionIndex.indexOf(laserPosition);
+          // invaderPositionIndex.splice(invaderIndex, 1);
+          clearInterval(playerLaserMoving);
+        } else if (cells[laserPosition].classList.contains("addShield")) {
+          cells[laserPosition].classList.remove("addShield", "bullet");
+          // cells[laserPosition].classList.remove("bullet");
+          clearInterval(playerLaserMoving);
+        } else {
+          cells[laserPosition].classList.remove("bullet");
+          laserPosition = laserPosition - 20;
+          cells[laserPosition].classList.add("bullet");
+        }
+      }, 100);
+    }
+    // let laserPosition = laserBasePosition;
+    // function baseLaserShoot() {
+    //   cells[laserPosition].classList.remove("addBaseLaser");
+    //   laserPosition -= width;
+    //   cells[laserPosition].classList.add("addBaseLaser");
+    //   if (cells[laserPosition].classList.contains("addInvader")) {
+    //     cells[laserPosition].classList.remove("addBaseLaser");
+    //     cells[laserPosition].classList.remove("addInvader");
+    //   }
+    // }
+  }
 
   // <====== Laser Base Functions =======>
 
@@ -167,9 +204,10 @@ function init() {
   // <====== Lives Left Functions =======>
 
   window.addEventListener("keydown", moveLaserBase);
-  // start.addEventListener("click", startGame);
-  startGame();
+  start.addEventListener("click", startGame);
+  window.addEventListener("keyup", baseLaser);
 
+  startGame();
   createGrid();
   addShield();
 }

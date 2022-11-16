@@ -139,6 +139,13 @@ body {
   background-position: center;
 }
 
+.bullet {
+  background-image: url("../images/Bullet.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 .addShield {
   /* background-color: red; */
   background-image: url("../images/shield.png");
@@ -147,11 +154,6 @@ body {
   background-position: center;
 }
 
-.addBullet {
-  background-image: url("../images/Bullet.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
 #lives-left {
   background-image: url("../images/invader.png");
