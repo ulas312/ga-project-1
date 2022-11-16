@@ -109,6 +109,31 @@ function init() {
     invaderPositionIndex;
   }
 
+  function shootBombs() {
+    let bombs =
+      invaderPositionIndex[
+        Math.floor(Math.random() * invaderPositionIndex.length)
+      ];
+    let bombPosition = (bombs += width);
+    const bombMovement = window.setInterval(() => {
+      const y = Math.floor(bombPosition / width);
+      if (cells[bombPosition].classList.contains("laserBase")) {
+        cells[bombPosition].classList.remove("bomb");
+        clearInterval(bombMovement);
+      } else if (y === 0) {
+        cells[bombPosition].classList.remove("bomb");
+      } else if (cells[bombPosition].classList.contains("addShield")) {
+        cells[bombPosition].classList.remove("addShield");
+        cells[bombPosition].classList.remove("bomb");
+        clearInterval(bombMovement);
+      } else {
+        cells[bombPosition].classList.remove("bomb");
+        bombPosition = bombPosition += width;
+        cells[bombPosition].classList.add("bomb");
+      }
+    }, 200);
+  }
+
   // <====== Invader Functions =======>
 
   // <====== Shield Functions =======>
@@ -162,15 +187,15 @@ function init() {
           cells[bulletPosition].classList.remove("bullet");
           clearInterval(playerBulletMoving);
         } else if (cells[bulletPosition].classList.contains("addInvader")) {
-          cells[bulletPosition].classList.remove("bullet", "addInvader")
-          const invaderIndex = invaderPositionIndex.indexOf(bulletPosition)
-          invaderPositionIndex.splice(invaderIndex, 1)
-          clearInterval(playerBulletMoving)
+          cells[bulletPosition].classList.remove("bullet", "addInvader");
+          const invaderIndex = invaderPositionIndex.indexOf(bulletPosition);
+          invaderPositionIndex.splice(invaderIndex, 1);
+          clearInterval(playerBulletMoving);
         } else if (cells[bulletPosition].classList.contains("addShield")) {
-          cells[bulletPosition].classList.remove("bullet", "addShield")
-          clearInterval(playerBulletMoving)
+          cells[bulletPosition].classList.remove("bullet", "addShield");
+          clearInterval(playerBulletMoving);
         } else {
-          cells[bulletPosition].classList.remove("bullet"); 
+          cells[bulletPosition].classList.remove("bullet");
           bulletPosition -= 20;
           cells[bulletPosition].classList.add("bullet");
         }
@@ -200,6 +225,7 @@ function init() {
   startGame();
   createGrid();
   addShield();
+  const bombInterval = setInterval(shootBombs, 1200);
 }
 
 document.addEventListener("DOMContentLoaded", init);
