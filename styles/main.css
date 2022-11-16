@@ -29,6 +29,7 @@ body {
 
 .instructions-box {
   border: 1px solid pink;
+  background-color: #CBC8B9;
   width: 300px;
   color: ;
   text-align: center;
@@ -47,6 +48,8 @@ body {
 .grid-wrapper {
   /* height: 90vh; */
   padding-bottom: 10px;
+  margin-top: 80px;
+  margin-left: 400px;
   display: flex;
   justify-content: center;
 }
