@@ -23,21 +23,34 @@ body {
   margin-bottom: 30vh;
 }
 
-.instructions-wrapper {
-  display: flex;
+instructions-wrapper {
+  position: relative;
 }
 
-.instructions-box {
+#instructions-box {
   border: 1px solid pink;
-  background-color: #cbc8b9;
-  width: 300px;
-  color: ;
+  background-color: #040707;
+  padding-top: 50px;
+  width: 600px;
+  height: 600px;
+  color: white;
   text-align: center;
-  display: flex;
+  position: absolute;
+  left: 550px;
+  top: 580px;
+  /* margin: 0 0 0 30px; */
+  /* display: flex;
   justify-content: flex-start;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
+h1 {
+  font-size: 60px;
+}
+
+button {
+  color: white;
+}
 .scores-wrapper {
   height: 10vh;
   display: flex;
@@ -67,7 +80,7 @@ body {
 }
 
 #grid div {
-  border: 1px solid rgb(27, 27, 27);
+  /* border: 1px solid rgb(27, 27, 27); */
   /* background-image: url("../images/Black-background.png"); */
   flex-grow: 1;
   height: 30px;
@@ -103,21 +116,44 @@ body {
   align-items: baseline;
 }
 
+#game-over-wrapper {
+  margin-left: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 #current-score-display {
   color: white;
+}
+
+.mute-btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 30px;
+  font-family: "VT323", monospace;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.mute-btn:hover {
+  background: rgb(30, 30, 30);
 }
 
 .start-btn {
   border: none;
   background-color: inherit;
   padding: 14px 28px;
-  font-size: 16px;
+  color: #41C2D2;
+  font-size: 30px;
+  font-family: "VT323", monospace;
   cursor: pointer;
   display: inline-block;
 }
 
 .start-btn:hover {
-  background: #eee;
+  background: rgb(30, 30, 30);
 }
 
 .mute-wrapper {
@@ -126,7 +162,7 @@ body {
   align-items: center;
 }
 
-.pause-music-btn {
+.mute-music-btn {
   background-image: url("../images/pause-music.png");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -147,6 +183,7 @@ body {
 
 .hidden {
   display: none;
+  position: absolute;
 }
 
 .addInvader {

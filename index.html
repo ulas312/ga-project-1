@@ -36,57 +36,50 @@
           <p>HI-SCORE</p>
           <p><span id="high-score-display">00000</span></p>
         </div>
+      </div>
 
-        <div id="instructions-wrapper">
-          <div class="hidden" class="instructions-box">
-            <h1>SPACE INVADERS</h1>
-            <div class="pause-music-wrapper">
-              <button id="pause-music" class="pause-music-btn"></button>
-            </div>
-            <button id="start" class="start-btn">CLICK HERE TO PLAY!</button>
-            <p>*SCORE ADVANCE TABLE*</p>
-            <p>
-              <img
-                src="../images/5th-line-invader.png"
-                alt="Space Invader"
-                width="20"
-              />
-              = 100 POINTS
-              <!-- = 30 POINTS -->
-              <!-- </p>
-        <p>
-          <img
-            src="../images/4th-line-invader.png"
-            alt="Space Invader"
-            width="20"
-          />
-          <img
-            src="../images/3rd-line-invader.png"
-            alt="Space Invader"
-            width="20"
-          />
-          = 20 POINTS
-        </p>
-        <p>
-          <img
-            src="../images/2nd-line-invader.png"
-            alt="Space Invader"
-            width="20"
-          />
-          <img
-            src="../images/1st-line-invader.png"
-            alt="Space Invader"
-            width="20"
-          />
-          = 20 POINTS -->
-            </p>
+      <div id="instructions-wrapper">
+        <div class="hidde" id="instructions-box">
+          <img src="../images/spaceinvaders.gif" width="150px" />
+          <h1>SPACE INVADERS</h1>
+          <button id="start" class="start-btn">CLICK HERE TO PLAY!</button>
+          <div class="mute-music-wrapper">
+            <!-- <p>Pause Audio <img src="../images/mute.png" width="30px"> </p> -->
+            <!-- <button id="pause-music" class="pause-music-btn"></button> -->
+            <button id="mute" class="mute-btn">
+              MUTE AUDIO <img src="../images/mute.png" width="30px" />
+            </button>
           </div>
+          <p>*SCORE ADVANCE TABLE*</p>
+          <p>
+            <img
+              src="../images/5th-line-invader.png"
+              alt="Space Invader"
+              width="20"
+            />
+            = 100 POINTS
+          </p>
         </div>
+      </div>
 
+      <div class="hidde" id="grid-wrapper">
+        <div class="hidde" id="grid"></div>
       </div>
-      <div class="" id="grid-wrapper">
-        <div class="hidden" id="grid"></div>
+
+      <div class="hidden" id="game-over-wrapper">
+        <div class="hidden" id="game-over-box">
+          <div class="hidden" id="result">Final Score</div>
+          <img
+            class="hidde"
+            id="gameover-img"
+            src="../images/game-over.png"
+            alt="Game Over"
+            height="600px"
+          />
+          <button id="start" class="start-btn">PLAY AGAIN!</button>
+        </div>
       </div>
+
       <div class="lives-line"></div>
       <div class="lives-wrapper">
         <p>LIVES LEFT <span id="lives-left">3</span></p>
