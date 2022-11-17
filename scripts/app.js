@@ -1,9 +1,15 @@
 function init() {
   // <====== Dom Elements =======>
   const start = document.querySelector("#start");
-  const grid = document.querySelector(".grid");
+  const grid = document.querySelector("#grid");
   const livesLeftDisplay = document.querySelector("#lives-left");
-  // const currentScore = document.querySelector("#current-score-display");
+  const currentScore = document.querySelector("#current-score-display");
+  const pauseMusic = document.querySelector("#pause-music");
+  // audioThemeSong.src = "../sounds/spaceinvaders1.mpeg";
+  // audioLaser.src = "../sounds/shoot.wav";
+  // audioInvaderKilled.src = "../sounds/invaderkilled.wav";
+  // audioBaseExplosion.src = "../sounds/explosion.wav";
+  // audioInvaderMovement.src = "../sounds/fastinvader3.wav";
 
   // <====== Game Variables =======>
   let invaderPositionIndex = [
@@ -23,8 +29,8 @@ function init() {
   const width = 20;
   const gridCellCount = width * width;
   const cells = [];
-  let lives = 0;
-
+  let lives = 3;
+  let score = 0;
   let invaderBombInterval = null;
   let baseLaserShoot = null;
   let timer = null;
@@ -45,10 +51,10 @@ function init() {
 
   // <====== Game Start Functions =======>
   function startGame() {
-    // start.disabled = true;
     moveInvader();
-    lives = 3;
-    // livesLeftDisplay();
+    // start.classList.add("hidden");
+    // grid.classList.remove("hidden");
+    // grid.classList.add("grid");
   }
   // <====== Game Start Functions =======>
 
@@ -92,13 +98,13 @@ function init() {
         invaderPositionIndex = invaderPositionIndex.map((i) => i - 1);
         addInvader();
       }
-    }, 900);
+    }, 800);
   }
 
   function checkIfHitBottom() {
     invaderPositionIndex.forEach((invader) => {
       if (cells[invader].classList.contains("LaserBase")) {
-        console.log("Game over");
+        // console.log("Game over");
         gameOver();
       }
     });
@@ -120,8 +126,12 @@ function init() {
       if (cells[bombPosition].classList.contains("laserBase")) {
         cells[bombPosition].classList.remove("bomb");
         clearInterval(bombMovement);
-      } else if (y === 0) {
+        lives--;
+        livesLeftDisplay.textContent = lives;
+        console.log("hit")
+      } else if (y === 320) {
         cells[bombPosition].classList.remove("bomb");
+        clearInterval(bombMovement);
       } else if (cells[bombPosition].classList.contains("addShield")) {
         cells[bombPosition].classList.remove("addShield");
         cells[bombPosition].classList.remove("bomb");
@@ -131,7 +141,7 @@ function init() {
         bombPosition = bombPosition += width;
         cells[bombPosition].classList.add("bomb");
       }
-    }, 200);
+    }, 300);
   }
 
   // <====== Invader Functions =======>
@@ -166,7 +176,7 @@ function init() {
   }
 
   function moveLaserBase(e) {
-    console.log(e.key);
+    // console.log(e.key);
     const x = laserBasePosition % width;
     const y = Math.floor(laserBasePosition / width);
     // console.log({ x, y });
@@ -190,6 +200,8 @@ function init() {
           cells[bulletPosition].classList.remove("bullet", "addInvader");
           const invaderIndex = invaderPositionIndex.indexOf(bulletPosition);
           invaderPositionIndex.splice(invaderIndex, 1);
+          score = score + 100;
+          currentScore.textContent = score;
           clearInterval(playerBulletMoving);
         } else if (cells[bulletPosition].classList.contains("addShield")) {
           cells[bulletPosition].classList.remove("bullet", "addShield");
@@ -206,21 +218,31 @@ function init() {
   // <====== Laser Base Functions =======>
 
   // <====== Lives Left Functions =======>
-  // function livesLeftDisplay() {
-  //   elements.livesLeftDisplay.innerHTML = "";
+  // function livesLeft() {
+  //   e.livesLeftDisplay.innerHTML = "";
   //   for (let i = 0; i < lives; i++) {
   //     const invaderLives = document.createElement("img");
   //     invaderLives.src = "../images/invader.png";
   //     invaderLives.classList.add("invaderLives");
-  //     elements.livesLeftDisplay.appendChild(invaderLives);
+  //     e.livesLeftDisplay.appendChild(invaderLives);
   //   }
   // }
 
   // <====== Lives Left Functions =======>
 
+  // <====== End Game Functions =======>
+  // function endGameChecker() {
+
+  // }
+  // <====== End Game Functions =======>
+
   window.addEventListener("keydown", moveLaserBase);
   start.addEventListener("click", startGame);
   window.addEventListener("keyup", shootBullet);
+  // window.onload = function () {
+  //   document.getElementById("intro-audio").play();
+  // };
+  // pauseMusic.addEventListener("click", )
 
   startGame();
   createGrid();

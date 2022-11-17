@@ -11,21 +11,20 @@
       href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="shortcut icon"
+      href="../images/favicon.ico"
+      type="image/x-icon"
+    />
     <title>Space Invaders</title>
     <script src="scripts/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <div class="instructions-wrapper">
-        <div class="instructions-box">
-          <h1>SPACE INVADERS</h1>
-          <input type="image" src="http://example.com/path/to/image.png"/>
-          <button id="start" class="btn">CLICK HERE TO PLAY!</button>
-          <p>*SCORE ADVANCE TABLE*</p>
-          <P><img src="/images/5th-line-invader.png" alt="Space Invader" width="20"> = 30 POINTS</P>
-          <P><img src="/images/4th-line-invader.png" alt="Space Invader" width="20"> <img src="/images/3rd-line-invader.png" alt="Space Invader" width="20"> = 20 POINTS</P>
-          <P><img src="/images/2nd-line-invader.png" alt="Space Invader" width="20"> <img src="/images/1st-line-invader.png" alt="Space Invader" width="20"> = 20 POINTS</P>
-        </div>
-      </div>
+    <audio id="audio-theme-song"></audio>
+    <audio id="audio-laser"></audio>
+    <audio id="audio-invader-killed"></audio>
+    <audio id="audio-base-explosion"></audio>
+    <audio id="audio-invader-movement"></audio>
     <div class="background">
       <div class="padding"></div>
       <div class="scores-wrapper">
@@ -37,16 +36,62 @@
           <p>HI-SCORE</p>
           <p><span id="high-score-display">00000</span></p>
         </div>
+
+        <div id="instructions-wrapper">
+          <div class="hidden" class="instructions-box">
+            <h1>SPACE INVADERS</h1>
+            <div class="pause-music-wrapper">
+              <button id="pause-music" class="pause-music-btn"></button>
+            </div>
+            <button id="start" class="start-btn">CLICK HERE TO PLAY!</button>
+            <p>*SCORE ADVANCE TABLE*</p>
+            <p>
+              <img
+                src="../images/5th-line-invader.png"
+                alt="Space Invader"
+                width="20"
+              />
+              = 100 POINTS
+              <!-- = 30 POINTS -->
+              <!-- </p>
+        <p>
+          <img
+            src="../images/4th-line-invader.png"
+            alt="Space Invader"
+            width="20"
+          />
+          <img
+            src="../images/3rd-line-invader.png"
+            alt="Space Invader"
+            width="20"
+          />
+          = 20 POINTS
+        </p>
+        <p>
+          <img
+            src="../images/2nd-line-invader.png"
+            alt="Space Invader"
+            width="20"
+          />
+          <img
+            src="../images/1st-line-invader.png"
+            alt="Space Invader"
+            width="20"
+          />
+          = 20 POINTS -->
+            </p>
+          </div>
+        </div>
+
       </div>
-      <div class="grid-wrapper">
-        <div class="grid"></div>
+      <div class="" id="grid-wrapper">
+        <div class="hidden" id="grid"></div>
       </div>
       <div class="lives-line"></div>
       <div class="lives-wrapper">
-        <p>LIVES LEFT <span id="lives-left"> </span></p>
-        <p><span class="Credit-text">CREDIT</span> 00</p>
+        <p>LIVES LEFT <span id="lives-left">3</span></p>
+        <p><span class="Credit-text">CREDIT</span> 01</p>
       </div>
     </div>
-      
   </body>
 </html>
