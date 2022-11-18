@@ -16,10 +16,10 @@ function init() {
   );
   const audioInvaderKilled = document.querySelector("#audio-invader-killed");
   const audioBaseExplosion = document.querySelector("#audio-base-explosion");
-  audioInvaderKilled.src = "../sounds/invaderkilled.wav";
-  audioLaser.src = "../sounds/shoot.wav";
-  audioBaseExplosion.src = "../sounds/explosion.wav";
-  audioInvaderMovement.src = "../sounds/fastinvader3.wav";
+  audioInvaderKilled.src = "./sounds/invaderkilled.wav";
+  audioLaser.src = "./sounds/shoot.wav";
+  audioBaseExplosion.src = "./sounds/explosion.wav";
+  audioInvaderMovement.src = "./sounds/fastinvader3.wav";
 
   // <====== Game Variables =======>
   let invaderPositionIndex = [
@@ -294,7 +294,7 @@ function init() {
 
   // <====== Audio Functions =======>
   function playIntroAudio() {
-    audioElement.src = "../sounds/spaceinvaders1.mpeg";
+    audioElement.src = "./sounds/spaceinvaders1.mpeg";
     audioElement.play();
   }
   playButton.addEventListener("click", playIntroAudio);
