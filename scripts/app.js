@@ -11,11 +11,14 @@ function init() {
   const intro = document.querySelector("#instructions-box");
   const ending = document.querySelector("#game-over-box");
   const audioLaser = document.querySelector("#audio-laser");
+  const audioInvaderMovement = document.querySelector(
+    "#audio-invader-movement"
+  );
   audioLaser.src = "../sounds/shoot.wav";
-  audioLaser.muted = true;
+  // audioLaser.muted = true;
   // audioInvaderKilled.src = "../sounds/invaderkilled.wav";
   // audioBaseExplosion.src = "../sounds/explosion.wav";
-  // audioInvaderMovement.src = "../sounds/fastinvader3.wav";
+  audioInvaderMovement.src = "../sounds/fastinvader3.wav";
 
   // <====== Game Variables =======>
   let invaderPositionIndex = [
@@ -41,7 +44,7 @@ function init() {
   let baseLaserShoot = null;
   let endGameChecker = null;
   let timer = null;
-  let muted = true;
+  // let muted = true;
 
   // <====== Grid Functions =======>
   function createGrid() {
@@ -63,6 +66,7 @@ function init() {
     endGameCheck();
     addShield();
     shootBombs();
+    setInterval(shootBombs, 1200);
     intro.classList.add("hidden");
     ending.classList.add("hidden");
     lives = 3;
@@ -289,14 +293,14 @@ function init() {
   }
   playButton.addEventListener("click", playIntroAudio);
 
-  function playSoundEffects() {
-    muted = !muted;
-    if (muted) {
-      audioLaser.muted = true;
-    } else if (!muted) {
-      audioLaser.muted = false;
-    }
-  }
+  // function playSoundEffects() {
+  //   muted = !muted;
+  //   if (muted) {
+  //     audioLaser.muted = true;
+  //   } else if (!muted) {
+  //     audioLaser.muted = false;
+  //   }
+  // }
 
   // <====== Audio Functions =======>
 
@@ -305,8 +309,7 @@ function init() {
   window.addEventListener("keyup", shootBullet);
 
   createGrid();
-  addShield();
-  const bombInterval = setInterval(shootBombs, 1200);
+  // addShield();
 }
 
 document.addEventListener("DOMContentLoaded", init);
