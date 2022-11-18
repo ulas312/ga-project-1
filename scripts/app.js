@@ -14,10 +14,11 @@ function init() {
   const audioInvaderMovement = document.querySelector(
     "#audio-invader-movement"
   );
+  const audioInvaderKilled = document.querySelector("#audio-invader-killed");
+  const audioBaseExplosion = document.querySelector("#audio-base-explosion");
+  audioInvaderKilled.src = "../sounds/invaderkilled.wav";
   audioLaser.src = "../sounds/shoot.wav";
-  // audioLaser.muted = true;
-  // audioInvaderKilled.src = "../sounds/invaderkilled.wav";
-  // audioBaseExplosion.src = "../sounds/explosion.wav";
+  audioBaseExplosion.src = "../sounds/explosion.wav";
   audioInvaderMovement.src = "../sounds/fastinvader3.wav";
 
   // <====== Game Variables =======>
@@ -66,7 +67,7 @@ function init() {
     endGameCheck();
     addShield();
     shootBombs();
-    setInterval(shootBombs, 1200);
+    setInterval(shootBombs, 1300);
     intro.classList.add("hidden");
     ending.classList.add("hidden");
     lives = 3;
@@ -113,10 +114,12 @@ function init() {
       checkIfHasHitWall();
       checkIfHitBottom();
       if (goingRight) {
+        audioInvaderMovement.play();
         removeInvader();
         invaderPositionIndex = invaderPositionIndex.map((i) => i + 1);
         addInvader();
       } else {
+        audioInvaderMovement.play();
         !goingRight;
         removeInvader();
         invaderPositionIndex = invaderPositionIndex.map((i) => i - 1);
@@ -145,6 +148,7 @@ function init() {
       if (cells[bombPosition].classList.contains("laserBase")) {
         cells[bombPosition].classList.remove("bomb");
         cells[bombPosition].classList.add("addBase-Explosion");
+        audioBaseExplosion.play();
         setTimeout(() => {
           cells[bombPosition].classList.remove("addBase-Explosion");
         }, 300);
@@ -227,8 +231,10 @@ function init() {
         } else if (cells[bulletPosition].classList.contains("addInvader")) {
           cells[bulletPosition].classList.remove("bullet", "addInvader");
           cells[bulletPosition].classList.add("addInvader-Explosion");
+          audioInvaderKilled.play();
           setTimeout(() => {
             cells[bulletPosition].classList.remove("addInvader-Explosion");
+            audioInvaderKilled.play();
           }, 300);
           const invaderIndex = invaderPositionIndex.indexOf(bulletPosition);
           invaderPositionIndex.splice(invaderIndex, 1);
