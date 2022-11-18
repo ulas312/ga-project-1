@@ -4,8 +4,9 @@ function init() {
   const grid = document.querySelector("#grid");
   const result = document.querySelector("#result");
   const livesLeftDisplay = document.querySelector("#lives-left");
+  const finalScore = document.querySelector("#final-score");
   const currentScore = document.querySelector("#current-score-display");
-  const pauseMusic = document.querySelector("#pause-music");
+  const musicPlayer = document.querySelector("#pause-music");
   const intro = document.querySelector("#instructions-box");
   const ending = document.querySelector("#game-over-box");
   // audioThemeSong.src = "../sounds/spaceinvaders1.mpeg";
@@ -58,8 +59,8 @@ function init() {
     moveInvader();
     endGameCheck();
     intro.classList.add("hidden");
-    ending.classList.add("hidden")
-    lives = 3
+    ending.classList.add("hidden");
+    lives = 3;
 
     // move spaceship
     // drop bombs
@@ -112,12 +113,12 @@ function init() {
         invaderPositionIndex = invaderPositionIndex.map((i) => i - 1);
         addInvader();
       }
-    }, 200);
+    }, 900);
   }
 
   function checkIfHitBottom() {
     invaderPositionIndex.forEach((invader) => {
-      if (cells[invader].classList.contains("LaserBase")) {
+      if (cells[invader].classList.contains("laserBase")) {
         // console.log("Game over");
         gameOver(`Game Over! Your score was ${score}`);
       }
@@ -132,7 +133,7 @@ function init() {
     let bombPosition = (bombs += width);
     const bombMovement = window.setInterval(() => {
       const y = Math.floor(bombPosition / width);
-      if (cells[bombPosition].classList.contains("LaserBase")) {
+      if (cells[bombPosition].classList.contains("laserBase")) {
         cells[bombPosition].classList.remove("bomb");
         clearInterval(bombMovement);
         lives--;
@@ -165,11 +166,11 @@ function init() {
 
   // <====== Laser Base Functions =======>
   function addLaserBase(laserBasePosition) {
-    cells[laserBasePosition].classList.add("LaserBase");
+    cells[laserBasePosition].classList.add("laserBase");
   }
 
   function removeLaserBase(laserBasePosition) {
-    cells[laserBasePosition].classList.remove("LaserBase");
+    cells[laserBasePosition].classList.remove("laserBase");
   }
 
   function moveRight() {
@@ -207,6 +208,10 @@ function init() {
           clearInterval(playerBulletMoving);
         } else if (cells[bulletPosition].classList.contains("addInvader")) {
           cells[bulletPosition].classList.remove("bullet", "addInvader");
+          cells[bulletPosition].classList.add(".addInvader-Explosion");
+          setTimeout(() => {
+            cells[bulletPosition].classList.remove(".addInvader-Explosion");
+          }, 300);
           const invaderIndex = invaderPositionIndex.indexOf(bulletPosition);
           invaderPositionIndex.splice(invaderIndex, 1);
           score = score + 100;
@@ -243,9 +248,9 @@ function init() {
     }, 100);
   }
 
-  function gameOver(gameOverStatment) {
-    result.classList.remove("hidden")
-    result.innerHTML = gameOverStatment
+  function gameOver(gameOverStatement) {
+    result.classList.remove("hidden");
+    result.innerHTML = gameOverStatement;
     removeInvader();
     removeLaserBase();
     clearInterval(timer);
@@ -256,7 +261,7 @@ function init() {
     clearInterval(endGameChecker);
     grid.classList.remove("grid");
     grid.classList.add("hidden");
-    ending.classList.remove("hidden")
+    ending.classList.remove("hidden");
 
     // invaderPositionIndex;
   }
@@ -266,9 +271,10 @@ function init() {
   window.addEventListener("keydown", moveLaserBase);
   start.addEventListener("click", startGame);
   window.addEventListener("keyup", shootBullet);
-  // window.onload = function () {
-  //   document.getElementById("intro-audio").play();
-  // };
+  window.onload = function () {
+    document.getElementById("intro-audio").play();
+  };
+
   // pauseMusic.addEventListener("click", )
 
   createGrid();

@@ -11,30 +11,35 @@
       href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="shortcut icon"
-      href="../images/favicon.ico"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>Space Invaders</title>
     <script src="scripts/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <audio id="audio-theme-song"></audio>
+    <audio
+      id="audio-theme-song"
+      src="../ga-project-1/sounds/spaceinvaders1.mpeg"
+      loop="loop"
+      preload="auto"
+    ></audio>
+    <!-- <audio id="audio-theme-song"></audio> -->
     <audio id="audio-laser"></audio>
     <audio id="audio-invader-killed"></audio>
     <audio id="audio-base-explosion"></audio>
     <audio id="audio-invader-movement"></audio>
     <div class="background">
       <div class="padding"></div>
+
       <div class="scores-wrapper">
-        <div class="score">
-          <p>SCORE <1></p>
-          <p><span id="current-score-display">00000</span></p>
-        </div>
-        <div class="high-score">
-          <p>HI-SCORE</p>
-          <p><span id="high-score-display">00000</span></p>
+        <div class="scores-box">
+          <div class="score">
+            <p>SCORE <1></p>
+            <p><span id="current-score-display">00000</span></p>
+          </div>
+          <div class="high-score">
+            <p>HI-SCORE</p>
+            <p><span id="high-score-display">31200</span></p>
+          </div>
         </div>
       </div>
 
@@ -68,9 +73,11 @@
 
       <div class="hidden" id="game-over-wrapper">
         <div class="hidden" id="game-over-box">
-          <div class="hidden" id="result">Final Score</div>
+          <div class="hidden" id="result">
+            <p>Final Score <span id="final-score">0</span></p>
+          </div>
           <img
-            class="hidde"
+            class="hidden"
             id="gameover-img"
             src="../images/game-over.png"
             alt="Game Over"
