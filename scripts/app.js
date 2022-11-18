@@ -135,6 +135,10 @@ function init() {
       const y = Math.floor(bombPosition / width);
       if (cells[bombPosition].classList.contains("laserBase")) {
         cells[bombPosition].classList.remove("bomb");
+        cells[bombPosition].classList.add("addBase-Explosion");
+        setTimeout(() => {
+          cells[bombPosition].classList.remove("addBase-Explosion");
+        }, 300);
         clearInterval(bombMovement);
         lives--;
         livesLeftDisplay.textContent = lives;
@@ -145,6 +149,10 @@ function init() {
       } else if (cells[bombPosition].classList.contains("addShield")) {
         cells[bombPosition].classList.remove("addShield");
         cells[bombPosition].classList.remove("bomb");
+        cells[bombPosition].classList.add("addBase-Explosion");
+        setTimeout(() => {
+          cells[bombPosition].classList.remove("addBase-Explosion");
+        }, 300);
         clearInterval(bombMovement);
       } else {
         cells[bombPosition].classList.remove("bomb");
@@ -208,9 +216,9 @@ function init() {
           clearInterval(playerBulletMoving);
         } else if (cells[bulletPosition].classList.contains("addInvader")) {
           cells[bulletPosition].classList.remove("bullet", "addInvader");
-          cells[bulletPosition].classList.add(".addInvader-Explosion");
+          cells[bulletPosition].classList.add("addInvader-Explosion");
           setTimeout(() => {
-            cells[bulletPosition].classList.remove(".addInvader-Explosion");
+            cells[bulletPosition].classList.remove("addInvader-Explosion");
           }, 300);
           const invaderIndex = invaderPositionIndex.indexOf(bulletPosition);
           invaderPositionIndex.splice(invaderIndex, 1);
@@ -271,9 +279,9 @@ function init() {
   window.addEventListener("keydown", moveLaserBase);
   start.addEventListener("click", startGame);
   window.addEventListener("keyup", shootBullet);
-  window.onload = function () {
-    document.getElementById("intro-audio").play();
-  };
+  // window.onload = function () {
+  //   document.getElementById("intro-audio").play();
+  // };
 
   // pauseMusic.addEventListener("click", )
 

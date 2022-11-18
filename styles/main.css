@@ -70,6 +70,12 @@ instructions-wrapper {
   top: 535px;
 }
 
+#instructions-box p {
+  font-size: 20px;
+  text-align: center;
+  line-height: 30px;
+}
+
 h1 {
   font-size: 60px;
 }
