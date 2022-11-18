@@ -6,7 +6,9 @@ function init() {
   const livesLeftDisplay = document.querySelector("#lives-left");
   const finalScore = document.querySelector("#final-score");
   const currentScore = document.querySelector("#current-score-display");
-  const musicPlayer = document.querySelector("#pause-music");
+  // const musicPlayer = document.querySelector("#pause-music");
+  const audioElement = document.querySelector("#audio-theme-song");
+  const playButton = document.querySelector("#play");
   const intro = document.querySelector("#instructions-box");
   const ending = document.querySelector("#game-over-box");
   // audioThemeSong.src = "../sounds/spaceinvaders1.mpeg";
@@ -275,6 +277,14 @@ function init() {
   }
 
   // <====== End Game Functions =======>
+
+  // <====== Theme song Functions =======>
+  function playIntroAudio() {
+    audioElement.src = "./sounds/spaceinvaders1.mpeg";
+    audioElement.play();
+  }
+  playButton.addEventListener("click", playIntroAudio);
+  // <====== Theme song Functions =======>
 
   window.addEventListener("keydown", moveLaserBase);
   start.addEventListener("click", startGame);
