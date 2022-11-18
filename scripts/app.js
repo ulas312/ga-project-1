@@ -294,20 +294,10 @@ function init() {
 
   // <====== Audio Functions =======>
   function playIntroAudio() {
-    audioElement.src = "./sounds/spaceinvaders1.mpeg";
+    audioElement.src = "../sounds/spaceinvaders1.mpeg";
     audioElement.play();
   }
   playButton.addEventListener("click", playIntroAudio);
-
-  // function playSoundEffects() {
-  //   muted = !muted;
-  //   if (muted) {
-  //     audioLaser.muted = true;
-  //   } else if (!muted) {
-  //     audioLaser.muted = false;
-  //   }
-  // }
-
   // <====== Audio Functions =======>
 
   window.addEventListener("keydown", moveLaserBase);
