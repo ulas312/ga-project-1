@@ -289,11 +289,7 @@ function init() {
   window.addEventListener("keydown", moveLaserBase);
   start.addEventListener("click", startGame);
   window.addEventListener("keyup", shootBullet);
-  // window.onload = function () {
-  //   document.getElementById("intro-audio").play();
-  // };
 
-  // pauseMusic.addEventListener("click", )
 
   createGrid();
   addShield();
