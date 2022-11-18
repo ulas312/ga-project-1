@@ -6,13 +6,13 @@ function init() {
   const livesLeftDisplay = document.querySelector("#lives-left");
   const finalScore = document.querySelector("#final-score");
   const currentScore = document.querySelector("#current-score-display");
-  // const musicPlayer = document.querySelector("#pause-music");
   const audioElement = document.querySelector("#audio-theme-song");
   const playButton = document.querySelector("#play");
   const intro = document.querySelector("#instructions-box");
   const ending = document.querySelector("#game-over-box");
-  // audioThemeSong.src = "../sounds/spaceinvaders1.mpeg";
-  // audioLaser.src = "../sounds/shoot.wav";
+  const audioLaser = document.querySelector("#audio-laser");
+  audioLaser.src = "../sounds/shoot.wav";
+  audioLaser.muted = true;
   // audioInvaderKilled.src = "../sounds/invaderkilled.wav";
   // audioBaseExplosion.src = "../sounds/explosion.wav";
   // audioInvaderMovement.src = "../sounds/fastinvader3.wav";
@@ -41,6 +41,7 @@ function init() {
   let baseLaserShoot = null;
   let endGameChecker = null;
   let timer = null;
+  let muted = true;
 
   // <====== Grid Functions =======>
   function createGrid() {
@@ -60,6 +61,8 @@ function init() {
   function startGame() {
     moveInvader();
     endGameCheck();
+    addShield();
+    shootBombs();
     intro.classList.add("hidden");
     ending.classList.add("hidden");
     lives = 3;
@@ -210,6 +213,7 @@ function init() {
   function shootBullet(e) {
     if (e.keyCode === 32) {
       e.preventDefault();
+      audioLaser.play();
       let bulletPosition = laserBasePosition;
       const playerBulletMoving = setInterval(() => {
         const y = Math.floor(bulletPosition / width);
@@ -278,18 +282,27 @@ function init() {
 
   // <====== End Game Functions =======>
 
-  // <====== Theme song Functions =======>
+  // <====== Audio Functions =======>
   function playIntroAudio() {
     audioElement.src = "./sounds/spaceinvaders1.mpeg";
     audioElement.play();
   }
   playButton.addEventListener("click", playIntroAudio);
-  // <====== Theme song Functions =======>
+
+  function playSoundEffects() {
+    muted = !muted;
+    if (muted) {
+      audioLaser.muted = true;
+    } else if (!muted) {
+      audioLaser.muted = false;
+    }
+  }
+
+  // <====== Audio Functions =======>
 
   window.addEventListener("keydown", moveLaserBase);
   start.addEventListener("click", startGame);
   window.addEventListener("keyup", shootBullet);
-
 
   createGrid();
   addShield();
@@ -297,3 +310,9 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// Bugs
+// if shoot the first row of invaders they wrap through the walls
+// invaders touch side and go down and across one
+// bullets never stop dropping
+// basses need to reset on start

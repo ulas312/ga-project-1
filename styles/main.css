@@ -151,21 +151,30 @@ button {
   bottom: 85px;
 }
 
-.mute-btn {
+.play-music-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-btn {
   border: none;
   background-color: inherit;
   padding: 14px 28px;
   font-size: 30px;
   font-family: "VT323", monospace;
   cursor: pointer;
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #game-over-box div {
   font-size: 30px;
 }
 
-.mute-btn:hover {
+.play-btn:hover {
   background: rgb(30, 30, 30);
 }
 
@@ -173,7 +182,7 @@ button {
   border: none;
   background-color: inherit;
   padding: 14px 28px;
-  color: #41C2D2;
+  color: #41c2d2;
   font-size: 30px;
   font-family: "VT323", monospace;
   cursor: pointer;
@@ -184,13 +193,13 @@ button {
   background: rgb(30, 30, 30);
 }
 
-.mute-wrapper {
+.play-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.mute-music-btn {
+/* .play-music-btn {
   background-image: url("../images/pause-music.png");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -198,13 +207,11 @@ button {
   width: 100px;
   height: 60px;
   border: none;
-}
+} */
 
 .Credit-text {
   color: #e5539e;
 }
-
-
 
 .hidden {
   display: none;
@@ -260,7 +267,6 @@ button {
   background-size: contain;
   background-position: center;
 }
-
 
 /* #lives-left {
   background-image: url("../images/invader.png");
