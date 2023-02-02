@@ -74,21 +74,15 @@ The website is deployed on Heroku, you can see it here: ...
 <p>For my theme Idea I wanted to keep ot retro and go for a copy of the classic game. Wanted t make the page seem like the screen of the 40th anniversary edition of the space invaders arcade 1up .
 </p>
 
-![1up space invaders arcade](https://i.postimg.cc/4x5s4Y5w/6333608-sd.jpg)
-
 <p>I then used Figma to do a mockup and a mood board for design ideas as well as a little Pseudocode </P>
 
 ![Figma](https://i.postimg.cc/Hx0fzKhz/Screenshot-2023-01-02-at-22-45-21.png)
-
-![Mockup](https://i.postimg.cc/ZRJfbqwP/Screenshot-2023-01-01-at-23-32-20.png)
 
 ---
 
 ## Build Process
 
 ### Grid
-
-![Grid](https://i.postimg.cc/Jn18BZrG/Screenshot-2023-01-02-at-22-52-31.png)
 
 <p>The grid is where the game takes place.</p>
 <ul>
